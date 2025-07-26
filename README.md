@@ -264,10 +264,6 @@ fn show_default_hints() {
 - 🎯 添加新练习
 - 🔧 优化代码
 
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
-
 ## 📚 相关资源
 
 - [Move 语言官方文档](https://move-language.github.io/move/)
