@@ -117,42 +117,46 @@ exercises/
 │       └── intro.move  # 练习代码
 ├── 01_variables/       # 📦 变量和类型
 ├── 02_functions/       # 🔧 函数定义
-├── 03_structs/         # 🏗️ 结构体
-├── 04_resources/       # 💎 资源和所有权
-├── 05_modules/         # 📚 模块系统
+├── 03_if/              # 🤔 条件语句
+├── 04_primitive_types/ # 🔢 基础数据类型
+├── 05_vecs/            # 📋 向量和集合
+├── 06_semantics/       # 🔄 所有权和语义
+├── 07_structs/         # 🏗️ 结构体定义
 └── ...                 # 更多练习
 ```
-06_semantiscs
+
 ## 📖 练习大纲
 
-### 🌱 基础部分
+### 🌱 基础部分 (Foundation)
 
-- **00_intro** - Move 语言介绍和基本语法
-- **01_variables** - 变量声明、可变性和类型
+- **00_intro** - Move 语言介绍和第一个程序
+- **01_variables** - 变量声明、可变性和作用域
 - **02_functions** - 函数定义、参数和返回值
 - **03_if** - 条件语句和布尔逻辑
-- **04_primitive_types** - 基础数据类型
-- **05_vecs** - 向量和集合操作
+- **04_primitive_types** - 基础数据类型和类型转换
+- **05_vecs** - 向量操作和集合处理
+- **06_semantics** - 所有权、借用和移动语义
 
-### 🏗️ 中级部分
+### 🏗️ 中级部分 (Intermediate)
 
-- **06_structs** - 结构体定义和使用
-- **07_enums** - 枚举类型和模式匹配
-- **08_modules** - 模块系统和可见性
-- **09_error_handling** - 错误处理和断言
-- **10_generics** - 泛型编程
+- **07_structs** - 结构体定义和实例化
+- **08_abilitys** - Move 能力系统（Copy, Drop, Key, Store）
+- **09_objects** - Sui 对象模型和对象操作
+- **10_enums** - 枚举类型和模式匹配
+- **11_strings** - 字符串处理和操作
+- **12_modules** - 模块系统、导入和可见性
 
-### 💎 高级部分
+### 💎 高级部分 (Advanced)
 
-- **11_resources** - 资源类型和线性类型系统
-- **12_capabilities** - 权限控制和安全模式
-- **13_events** - 事件发射和监听
-- **14_testing** - 单元测试和集成测试
-- **15_publishing** - 包发布和部署
-
-## 💡 提示系统
-
-Movelings 支持智能提示系统，会自动从练习代码中提取指导信息：
+- **13_tables** - 动态集合和表结构
+- **14_bags** - 异构集合和包结构
+- **15_generics** - 泛型编程和类型参数
+- **15_options** - 可选类型和错误处理
+- **17_ownership** - 深入所有权和生命周期
+- **18_tests** - 单元测试和集成测试
+- **19_witness** - 见证模式和权限验证
+- **20_error_handling** - 错误处理最佳实践
+- **21_macros** - 宏编程和代码生成
 
 ### 提示格式
 
