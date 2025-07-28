@@ -62,6 +62,7 @@ Movelings 是一个交互式的 Move 语言学习工具，包含：
 | --------------------------- | ------------------ | --------------------------- |
 | `cargo run`               | 显示主菜单和概览   | -                           |
 | `cargo run <练习名>`      | 检查特定练习       | `cargo run 00_intro`      |
+| `cargo run watch`         | 监视文件变化并自动检查 | -                           |
 | `cargo run list`          | 列出所有练习和进度 | -                           |
 | `cargo run hint <练习名>` | 获取练习提示       | `cargo run hint 00_intro` |
 | `cargo run progress`      | 查看详细进度报告   | -                           |
@@ -99,6 +100,12 @@ Movelings 是一个交互式的 Move 语言学习工具，包含：
    ```bash
    cargo run list
    ```
+7. **使用监视模式**（推荐）：
+
+  ```bash
+  cargo run watch
+  ```
+  此命令会自动检查第一个未完成的练习，并在你修改并保存任何练习文件时自动重新运行测试。
 
 ### 练习结构
 

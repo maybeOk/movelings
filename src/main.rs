@@ -2,6 +2,8 @@ use std::fs;
 use std::process::Command;
 use std::path::Path;
 use std::collections::HashSet;
+use std::sync::mpsc::channel;
+use notify::{Watcher, RecursiveMode};
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -361,8 +363,87 @@ fn show_general_hint() {
 }
 
 fn watch_mode() {
-    println!("👀 Watch mode not implemented yet");
-    println!("💡 For now, manually run 'cargo run <exercise>' after changes");
+    println!("👀 Entering watch mode. Press Ctrl+C to exit.");
+    println!("📂 Watching for changes in the 'exercises' directory...");
+
+    let (tx, rx) = channel();
+
+    let mut watcher = match notify::recommended_watcher(move |res| {
+        if let Ok(event) = res {
+            if let Err(e) = tx.send(event) {
+                println!("❌ Error sending event: {}", e);
+            }
+        } else if let Err(e) = res {
+            println!("❌ Watch error: {}", e);
+        }
+    }) {
+        Ok(w) => w,
+        Err(e) => {
+            println!("❌ Failed to create watcher: {}", e);
+            return;
+        }
+    };
+
+    if let Err(e) = watcher.watch(Path::new("exercises"), RecursiveMode::Recursive) {
+        println!("❌ Failed to start watching 'exercises' directory: {}", e);
+        return;
+    }
+
+    // Initial check of the first uncompleted exercise
+    let exercises = get_exercises();
+    let completed = load_completed_exercises();
+    if let Some(first_exercise) = exercises.iter().find(|e| !completed.contains(*e)) {
+        println!("\n🚀 Starting with the first uncompleted exercise: {}", first_exercise);
+        check_exercise(first_exercise);
+        println!("----------------------------------------------------");
+        println!("👀 Watching for changes... Press Ctrl+C to exit.");
+    }
+
+
+    loop {
+        match rx.recv() {
+            Ok(event) => {
+                if let notify::Event {
+                    kind: notify::EventKind::Modify(_),
+                    paths,
+                    ..
+                } = event
+                {
+                    for path in paths {
+                        let is_in_sources = path.components().any(|c| c.as_os_str() == "sources");
+                        let is_in_build = path.components().any(|c| c.as_os_str() == "build");
+                        let is_move_file = path.extension().map_or(false, |s| s == "move");
+
+                        if is_move_file && is_in_sources && !is_in_build {
+                            if let Some(exercise_name) = find_exercise_name_from_path(&path) {
+                                // Clear screen for better readability
+                                print!("\x1B[2J\x1B[1;1H");
+                                println!("----------------------------------------------------");
+                                println!("✨ Detected change in: {}", path.display());
+                                check_exercise(&exercise_name);
+                                println!("----------------------------------------------------");
+                                println!("👀 Watching for next change... Press Ctrl+C to exit.");
+                            }
+                        }
+                    }
+                }
+            }
+            Err(e) => {
+                println!("❌ Error receiving event: {}", e);
+                break;
+            }
+        }
+    }
+}
+
+fn find_exercise_name_from_path(path: &Path) -> Option<String> {
+    path.ancestors()
+        .find(|p| {
+            p.parent().map_or(false, |parent| parent.file_name() == Some("exercises".as_ref()))
+        })
+        .and_then(|p| p.file_name())
+        .and_then(|s| s.to_str())
+        .map(|s| s.to_string())
 }
 
 fn show_usage() {
