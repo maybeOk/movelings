@@ -18,6 +18,14 @@ fn main() {
         Some(Commands::Reset) => reset_progress(),
         Some(Commands::Progress) => show_progress(),
         Some(Commands::Watch) => watch_mode(),
+        Some(Commands::Exercise(args)) => {
+            if let Some(exercise_name) = args.first() {
+                check_exercise(exercise_name);
+            } else {
+                eprintln!("Error: No exercise name provided");
+                std::process::exit(1);
+            }
+        },
         None => show_menu(),
     }
 }

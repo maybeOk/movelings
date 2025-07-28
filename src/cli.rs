@@ -21,4 +21,7 @@ pub enum Commands {
     Progress,
     /// Watches for file changes and automatically runs tests
     Watch,
+    /// Run exercise by name (any unrecognized command will be treated as exercise name)
+    #[command(external_subcommand)]
+    Exercise(Vec<String>),
 }

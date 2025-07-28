@@ -45,7 +45,7 @@ Movelings 是一个交互式的 Move 语言学习工具，包含：
 1. **克隆仓库**：
 
    ```bash
-   git clone https://github.com/your-username/movelings.git
+   git clone https://github.com/hoh-zone/movelings.git
    cd movelings
    ```
 2. **启动学习**：
@@ -122,7 +122,7 @@ exercises/
 ├── 05_modules/         # 📚 模块系统
 └── ...                 # 更多练习
 ```
-
+06_semantiscs
 ## 📖 练习大纲
 
 ### 🌱 基础部分
@@ -249,7 +249,7 @@ cargo run reset
 
 ### 自定义配置
 
-可以修改 `src/main.rs` 中的默认提示：
+可以修改 `src/utils.rs` 中的默认提示：
 
 ```rust
 fn show_default_hints() {
@@ -281,4 +281,4 @@ fn show_default_hints() {
 
 **开始您的 Move 学习之旅吧！** 🚀
 
-如有问题，请查看 [Issues](https://github.com/your-username/movelings/issues) 或创建新的 issue。
+如有问题，请查看 [Issues](https://github.com/hoh-zone/movelings/issues) 或创建新的 issue。
