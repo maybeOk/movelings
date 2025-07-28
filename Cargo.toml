@@ -1,0 +1,12 @@
+[package]
+name = "movelings"
+version = "0.1.0"
+edition = "2021"
+description = "Interactive Move programming language exercises"
+authors = ["Your Name <your.email@example.com>"]
+
+[[bin]]
+name = "movelings"
+path = "src/main.rs"
+
+[dependencies]

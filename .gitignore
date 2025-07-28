@@ -7,6 +7,7 @@ build
 .pnpm-store/
 /.pnp
 .pnp.js
+.movelings_progress
 
 # testing
 /coverage
@@ -25,3 +26,13 @@ yarn-debug.log*
 yarn-error.log*
 sui.log.*
 .history
+
+# Rust
+/target/
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
