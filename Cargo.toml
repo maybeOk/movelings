@@ -3,10 +3,12 @@ name = "movelings"
 version = "0.1.0"
 edition = "2021"
 description = "Interactive Move programming language exercises"
-authors = ["Your Name <your.email@example.com>"]
 
 [[bin]]
 name = "movelings"
 path = "src/main.rs"
 
 [dependencies]
+clap = { version = "4.4.8", features = ["derive"] }
+colored = "2.0.0"
+notify = "6.1.1"
